@@ -6,7 +6,7 @@ const INSERT = 'todos/INSERT';
 const TOGGLE = 'todos/TOGGLE';
 const REMOVE = 'todos/REMOVE';
 
-export const changeInput = creaseAction(CHANGE_INPUT, input => input);
+export const changeInput = createAction(CHANGE_INPUT, input => input);
 
 let id = 3;
 export const insert = createAction(INSERT, text => ({
