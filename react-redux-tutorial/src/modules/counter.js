@@ -1,10 +1,10 @@
-import { createActions, handleActions } from 'redux-actions';
+import { createAction, handleActions } from 'redux-actions';
 
 const INCREASE = 'counter/INCREASE';
 const DECREASE = 'counter/DECREASE';
 
-export const increase = createActions(INCREASE);
-export const decrease = createActions(DECREASE);
+export const increase = createAction(INCREASE);
+export const decrease = createAction(DECREASE);
 
 const initialState = {
   number: 0

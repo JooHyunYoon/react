@@ -1,5 +1,6 @@
 import React from 'react';
-const Counter = ({ number, onIncrease, onDecrease }) => {
+
+const Counter = React.memo(({ number, onIncrease, onDecrease }) => {
   return (
     <div>
       <h1>{number}</h1>
@@ -9,6 +10,6 @@ const Counter = ({ number, onIncrease, onDecrease }) => {
       </div>
     </div>
   );
-};
+});
 
 export default Counter;
