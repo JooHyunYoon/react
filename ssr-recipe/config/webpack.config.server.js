@@ -1,9 +1,15 @@
 const paths = require('./paths');
+const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
+const nodeExternals = require('webpack-node-externals');
+const webpack = require('webpack');
+const getClientEnvironment = require('./env');
 
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
+
+const env = getClientEnvironment(paths.publicUrlOrPath.slice(0, -1));
 
 module.exports = {
   mode: 'production',
@@ -13,7 +19,7 @@ module.exports = {
     path: paths.ssrBuild,
     filename: 'server.js',
     chunkFilename: 'js/[name].chunk.js',
-    publicPath: paths.servedPath,
+    publicPath: paths.publicUrlOrPath,
   },
   module: {
     rules: [
@@ -49,7 +55,7 @@ module.exports = {
             exclude: cssModuleRegex,
             loader: require.resolve('css-loader'),
             options: {
-              exportOnlyLocals: true
+              onlyLocals: true
             }
           },
           {
@@ -57,7 +63,7 @@ module.exports = {
             loader: require.resolve('css-loader'),
             options: {
               modules: true,
-              exportOnlyLocals: true,
+              onlyLocals: true,
               getLocalIdent: getCSSModuleLocalIdent
             }
           },
@@ -68,7 +74,7 @@ module.exports = {
               {
                 loader: require.resolve('css-loader'),
                 options: {
-                  exportOnlyLocals: true
+                 onlyLocals: true
                 }
               },
               require.resolve('sass-loader')
@@ -82,7 +88,7 @@ module.exports = {
                 loader: require.resolve('css-loader'),
                 options: {
                   modules: true,
-                  exportOnlyLocals:true,
+                  onlyLocals: true,
                   getLocalIdent: getCSSModuleLocalIdent
                 }
               },
@@ -112,5 +118,9 @@ module.exports = {
   },
   resolve: {
     modules: ['node_modules']
-  }
+  },
+  externals: [nodeExternals()],
+  plugins: [
+    new webpack.DefinePlugin(env.stringified)
+  ]
 };

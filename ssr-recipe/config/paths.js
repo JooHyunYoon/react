@@ -64,10 +64,9 @@ module.exports = {
   testsSetup: resolveModule(resolveApp, 'src/setupTests'),
   proxySetup: resolveApp('src/setupProxy.js'),
   appNodeModules: resolveApp('node_modules'),
-  publicUrl: getPublicUrlOrPath(resolveApp('package.json')),
-  servedPath: getServedPath(resolveApp('package.json')),
   ssrIndexJs: resolveApp('src/index.server.js'),
-  ssrBuild: resolveApp('dist')
+  ssrBuild: resolveApp('dist'),
+  publicUrlOrPath,
 };
 
 
