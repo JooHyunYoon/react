@@ -6,7 +6,7 @@ const GET_USERS_SUCCESS = 'users/GET_USERS_SUCCESS';
 const GET_USERS_FAILURE = 'users/GET_USERS_FAILURE';
 
 const GET_USER = 'users/GET_USER';
-const GET_USER_SUCCESS = 'users/GET_USER_SUCCSS';
+const GET_USER_SUCCESS = 'users/GET_USER_SUCCESS';
 const GET_USER_FAILURE = 'users/GET_USER_FAILURE';
 
 const getUsersPending = () => ({ type: GET_USERS_PENDING });
@@ -17,10 +17,10 @@ const getUsersFailure = payload => ({
   payload
 });
 
-export const getUser =id => ({ type: GET_USERS_FAILURE, payload: id });
-const getUserSuccess = data => ({ type: GET_USERS_SUCCESS, payload: data });
+export const getUser = id => ({ type: GET_USER, payload: id });
+const getUserSuccess = data => ({ type: GET_USER_SUCCESS, payload: data });
 const getUserFailure = error => ({
-  type: GET_USERS_FAILURE,
+  type: GET_USER_FAILURE,
   payload: error,
   error: true
 });
