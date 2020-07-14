@@ -12,7 +12,7 @@ export const changeField  = createAction(
     value,
   }),
 );
-export const sampleAction = createAction(INITIALIZE_FORM, form => form);
+export const initializeForm = createAction(INITIALIZE_FORM, form => form);
 
 const initialState = {
   register: {
